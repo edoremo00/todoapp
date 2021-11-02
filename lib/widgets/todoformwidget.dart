@@ -58,15 +58,15 @@ class Todoformwidget extends StatelessWidget {
         maxLines: 3,
         initialValue: description,
         onChanged: onChangeddescription,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        validator: (description) {
+        //autovalidateMode: AutovalidateMode.onUserInteraction,
+        /*validator: (description) {
           if (description!.isEmpty) {
             return "descrizione obbligatoria";
           } else if (description.trim().length == 0) {
             return "digitare almeno un carattere";
           }
           return null;
-        },
+        },*/
         decoration: InputDecoration(
           border: UnderlineInputBorder(),
           labelText: 'Descrizione',
