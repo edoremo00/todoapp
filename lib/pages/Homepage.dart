@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mytodoapp/widgets/addtodialogwidget.dart';
 import 'package:mytodoapp/main.dart';
+import 'package:mytodoapp/widgets/completedtodowidget.dart';
+import 'package:mytodoapp/widgets/todolistwidget.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class _HomepageState extends State<Homepage> {
   int selectedindex = 0;
   @override
   Widget build(BuildContext context) {
-    final tabs = [Container(), Container()];
+    final tabs = [Todolistwidget(), Completedtodowidget()];
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 65,
@@ -27,26 +29,33 @@ class _HomepageState extends State<Homepage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.white.withOpacity(0.7),
-        selectedItemColor: Colors.white,
-        currentIndex: selectedindex,
-        onTap: (index) => setState(() {
-          selectedindex = index;
-        }),
-        items: [
-          BottomNavigationBarItem(
-            tooltip: 'Da fare',
-            icon: Icon(Icons.fact_check_outlined),
-            label: 'Da fare',
-          ),
-          BottomNavigationBarItem(
-            tooltip: 'Completati',
-            icon: Icon(Icons.done),
-            label: 'Completati',
-          ),
-        ],
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+        child: BottomNavigationBar(
+          enableFeedback: true,
+          backgroundColor: Theme.of(context).primaryColor,
+          unselectedItemColor: Colors.white.withOpacity(0.7),
+          selectedItemColor: Colors.white,
+          currentIndex: selectedindex,
+          onTap: (index) => setState(() {
+            selectedindex = index;
+          }),
+          items: [
+            BottomNavigationBarItem(
+              tooltip: 'Da fare',
+              icon: Icon(Icons.fact_check_outlined),
+              label: 'Da fare',
+            ),
+            BottomNavigationBarItem(
+              tooltip: 'Completati',
+              icon: Icon(Icons.done),
+              label: 'Completati',
+            ),
+          ],
+        ),
       ),
       body: tabs[selectedindex],
       floatingActionButton: FloatingActionButton(
