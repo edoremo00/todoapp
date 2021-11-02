@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mytodoapp/provider/todos.dart';
+import 'package:provider/provider.dart';
 
 import 'pages/Homepage.dart';
 
@@ -11,14 +13,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: title,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
+    return ChangeNotifierProvider(
+      create: (context) => Todosprovider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: title,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Colors.white.withOpacity(0.95),
+        ),
+        home: Homepage(),
       ),
-      home: Homepage(),
     );
   }
 }
